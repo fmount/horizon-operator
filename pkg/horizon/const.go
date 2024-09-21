@@ -41,6 +41,9 @@ const (
 	// Horizon is the global ServiceType that refers to all the components deployed
 	// by the horizon-operator
 	Horizon storage.PropagationType = "Horizon"
+
+	// HorizonUID
+	HorizonUID int64 = 42420
 )
 
 // HorizonPropagation is the  definition of the Horizon propagation service

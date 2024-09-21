@@ -39,7 +39,7 @@ func Deployment(
 	labels map[string]string,
 	annotations map[string]string,
 ) (*appsv1.Deployment, error) {
-	runAsUser := int64(0)
+	runAsUser := HorizonUID
 
 	args := []string{"-c", ServiceCommand}
 

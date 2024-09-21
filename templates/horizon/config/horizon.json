@@ -5,6 +5,7 @@
             "source": "/var/lib/config-data/default/httpd.conf",
             "dest": "/etc/httpd/conf/httpd.conf",
             "merge": false,
+            "owner": "horizon:apache",
             "preserve_properties": true,
             "perm": "0644"
         },
@@ -12,6 +13,7 @@
             "source": "/var/lib/config-data/default/ssl.conf",
             "dest": "/etc/httpd/conf.d/ssl.conf",
             "merge": false,
+            "owner": "horizon:apache",
             "preserve_properties": true,
             "perm": "0644"
         },
@@ -19,25 +21,28 @@
             "source": "/run/openstack-dashboard/.secrets/horizon-secret",
             "dest": "/etc/openstack-dashboard/.horizon-secret",
             "merge": false,
+            "owner": "horizon:apache",
             "preserve_properties": true,
             "perm": "0600"
         },
         {
             "source": "/var/lib/config-data/default/local_settings.py",
             "dest": "/etc/openstack-dashboard/local_settings",
+            "owner": "horizon:apache",
             "merge": false,
             "preserve_properties": true
         },
         {
             "source": "/var/lib/config-data/default/9999_custom_settings.py",
             "dest": "/etc/openstack-dashboard/local_settings.d/9999_custom_settings.py",
+            "owner": "horizon:apache",
             "merge": false,
             "preserve_properties": true
         },
         {
             "source": "/var/lib/config-data/tls/certs/*",
             "dest": "/etc/pki/tls/certs/",
-            "owner": "root",
+            "owner": "horizon:horizon",
             "perm": "0640",
             "optional": true,
             "merge": true
@@ -45,8 +50,8 @@
         {
             "source": "/var/lib/config-data/tls/private/*",
             "dest": "/etc/pki/tls/private/",
-            "owner": "root",
-            "perm": "0600",
+            "owner": "horizon:horizon",
+            "perm": "0640",
             "optional": true,
             "merge": true
         }
@@ -54,13 +59,18 @@
     "permissions": [
         {
             "path": "/var/log/horizon",
-            "owner": "apache:apache",
+            "owner": "horizon:apache",
             "recurse": true
         },
         {
             "path": "/etc/openstack-dashboard",
-            "owner": "apache:apache",
+            "owner": "horizon:apache",
             "recurse": true
+        },
+        {
+              "path": "/etc/httpd/run",
+              "owner": "horizon:apache",
+              "recurse": true
         }
     ]
 }
